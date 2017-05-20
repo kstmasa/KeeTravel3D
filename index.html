@@ -2,9 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Welcome to Keelung Travel 3D</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="asset/css/main.css">
+    <script src="asset/js/main.js"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQpYZYBb1p1DvW66VbygQ7YJhAmViCX_U&callback=initialize&sensor=false&libraries=geometry">
+    </script>
 </head>
 <body>
-
+<div id="play-title"></div>
+<div id="play-box" class="img-rounded">
+    <button id="play-button" class="btn btn-primary">Play</button>
+    <br>
+    <button id="exit-button" class="btn btn-primary" onclick="window.close();">Exit</button>
+</div>
+<div id="street-view"></div>
 </body>
 </html>
