@@ -3,10 +3,13 @@ html, body {
     margin: 0;
     padding: 0;
 }
-#street-view {
+.keelung_city_page{
+	display:none;
+}
+#street_view {
     height: 100%;
 }
-#play-box {
+#play_box {
     width: 50%;
     height: 40%;
     position: fixed;
@@ -15,7 +18,7 @@ html, body {
     margin-left: 25%;
     margin-top: 25%;
 }
-#play-title {
+#play_title {
     background-image: url("../img/title.png");
     background-size: 100%;
     background-repeat: no-repeat;
@@ -27,13 +30,13 @@ html, body {
     height:30%;
 
 }
-#play-button {
+#play_button {
     width:50%;
     height:15%;
     margin-left:25%;
     margin-top:10%;
 }
-#exit-button {
+#exit_button {
     width:50%;
     height:15%;
     margin-left:25%;
