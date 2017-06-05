@@ -13,9 +13,17 @@ window.addEventListener("load",function(){
 		setTimeout(function() {
 			$(".initial_page").hide();
 			$(".keelung_city_page").show();
+			$("#keelung_background").addClass( "animated zoomIn");
+			panorama.setPosition({lat: 25.1312136, lng: 121.7415504});
 		}, 1000);
+		
 	});
 });
+window.setInterval(function() {
+    var pov = panorama.getPov();
+    pov.heading += 0.2;
+    panorama.setPov(pov);
+}, 30);
 function initialize(){
     panorama = new google.maps.StreetViewPanorama(
         document.getElementById('street_view'),
