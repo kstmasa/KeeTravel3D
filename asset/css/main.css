@@ -3,6 +3,10 @@ html, body {
     margin: 0;
     padding: 0;
 }
+a:focus, a:hover {
+    color: none;
+    text-decoration: none;
+}
 .keelung_city_page{
 	display:none;
 }
@@ -149,4 +153,10 @@ html, body {
     background-image: -moz-linear-gradient(top, #3EACBA, #48C6D4);
     background-image: -ms-linear-gradient(top, #3EACBA, #48C6D4);
     background-image: -o-linear-gradient(top, #3EACBA, #48C6D4);
+}
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+    border: 1px solid transparent;
 }
