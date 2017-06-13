@@ -18,7 +18,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <div class="navbar-brand">GTI x DYH</div>
+      <div class="navbar-brand" style="color:white;">GTI x DYH</div>
     </div>
     <ul class="nav navbar-nav">
       <li><a href="#">Document</a></li>
@@ -29,19 +29,38 @@
 	<div id="play_title" class="animated bounceInRight"></div>
 	<div id="play_box" class="img_rounded">
 		<a id="play_button" class="push_button blue" >Play</a>
-		<br>
 		<a id="exit_button" class="push_button red" onclick="window.close();">Exit</a>
 	</div>
 </section>
 <section class="keelung_city_page">
 	<div id="keelung_background">
 		<center><img src="asset/img/Keelung_districts.png" height="500"/></center>
-		<a>基隆</a>
+	</div>
+	<div id="keelung_citys">
+		<div id="city_1"><button id="city_1_btn" class="city_btn">七堵區</button></div>
+		<div id="city_2"><button id="city_2_btn" class="city_btn">仁愛區</button></div>
+		<div id="city_3"><button id="city_3_btn" class="city_btn">暖暖區</button></div>
+		<div id="city_4"><button id="city_4_btn" class="city_btn">中正區</button></div>
+		<div id="city_5"><button id="city_5_btn" class="city_btn">中山區</button></div>
+		<div id="city_6"><button id="city_6_btn" class="city_btn">安樂區</button></div>
+		<div id="city_7"><button id="city_7_btn" class="city_btn">信義區</button></div>
 	</div>
 </section>
 <section class="choose_level_page">
-	
+	<div id="city_4_level">
+		
+	</div>
+	<div class="back_box">
+		<button class="back_button push_button red">Back</button>
+	</div>
 </section>
+<div id="dialog">
+	<img src=""/>
+	<p>This level is not activated.</p>
+	<p>Please donate $100, and this level will open in future.</p>
+	<div id="dialog_btn"><a href="" id="check_receive"style="padding-left:30px;">Donate</a><button class="back_button"style="padding-left:35px;">Back</button></div>
+
+</div>
 <div id="street_view"></div>
 </body>
 </html>

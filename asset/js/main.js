@@ -14,9 +14,45 @@ window.addEventListener("load",function(){
 			$(".initial_page").hide();
 			$(".keelung_city_page").show();
 			$("#keelung_background").addClass( "animated zoomIn");
+			$("#keelung_citys").addClass( "animated zoomIn");
 			panorama.setPosition({lat: 25.1312136, lng: 121.7415504});
 		}, 1000);
-		
+	});
+	$(".back_button").on("click",function(){
+		$("#dialog").hide();
+		$(".back_button").removeClass("zoomIn").addClass( "animated zoomOut");
+		setTimeout(function() {
+			$(".back_button").removeClass("zoomOut");
+			$(".choose_level_page").hide();
+			$(".keelung_city_page").show();
+			$("#keelung_background").removeClass( "zoomOut" ).addClass( "zoomIn");
+			$("#keelung_citys").removeClass( "zoomOut" ).addClass( "zoomIn");
+			panorama.setPosition({lat: 25.1312136, lng: 121.7415504});
+		}, 1000);
+	});
+	$("#city_1").on("click",function(){
+		showDialog(); 
+	});
+	$("#city_2").on("click",function(){
+		showDialog(); 
+	});
+	$("#city_3").on("click",function(){
+		showDialog(); 
+	});
+	$("#city_4").on("click",function(){
+		hideKeelung();
+		setTimeout(function() {
+			$(".back_button").removeClass("zoomOut").addClass("animated zoomIn");
+		}, 1000);
+	});
+	$("#city_5").on("click",function(){
+		showDialog(); 
+	});
+	$("#city_6").on("click",function(){
+		showDialog(); 
+	});
+	$("#city_7").on("click",function(){
+		showDialog(); 
 	});
 });
 window.setInterval(function() {
@@ -24,6 +60,14 @@ window.setInterval(function() {
     pov.heading += 0.2;
     panorama.setPov(pov);
 }, 30);
+function hideKeelung(){
+	$("#keelung_background").addClass( "animated zoomOut");
+	$("#keelung_citys").addClass( "animated zoomOut");
+	setTimeout(function() {
+		$(".keelung_city_page").hide();
+		$(".choose_level_page").show();
+	}, 1000);
+}
 function initialize(){
     panorama = new google.maps.StreetViewPanorama(
         document.getElementById('street_view'),
@@ -38,4 +82,7 @@ function initialize(){
             linksControl:false,
             fullscreenControl:false
     });
+}
+function showDialog(){
+    $("#dialog").show().css('display', 'flex');
 }
