@@ -237,7 +237,7 @@ a:focus, a:hover {
     background: none;
 }
 #dialog {
-  background: #fff8f6;
+  background: rgb(200, 243, 233);
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.09);
   color: #4a4a4a;
   border-radius:10px;
@@ -252,7 +252,7 @@ a:focus, a:hover {
   -ms-align-items: center;
   -ms-flex-align: center;
       align-items: center;
-  padding: 76px 56px;
+  padding: 36px 36px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -273,7 +273,7 @@ a:focus, a:hover {
   display: -ms-flexbox;
   display: flex;
   padding: 7px 32px;
-  background: #d5948e;
+  background: #3a7b86;
   border-radius: 6px;
   color: #fff;
   cursor: pointer;
@@ -282,6 +282,7 @@ a:focus, a:hover {
   margin-left: 20px;
   border:none;
 }
+
 #dialog_btn{
 	position:flex;
 	float: left;

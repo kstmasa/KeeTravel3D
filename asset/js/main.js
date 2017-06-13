@@ -22,6 +22,7 @@ window.addEventListener("load",function(){
 		$("#dialog").hide();
 		$(".back_button").removeClass("zoomIn").addClass( "animated zoomOut");
 		setTimeout(function() {
+			
 			$(".back_button").removeClass("zoomOut");
 			$(".choose_level_page").hide();
 			$(".keelung_city_page").show();
@@ -84,5 +85,8 @@ function initialize(){
     });
 }
 function showDialog(){
+	var randomImg =Math.floor(Math.random()*3);
+	var img =["Cat","Cry","Jacky"];
+	$("#showImg").attr("src","asset/img/"+img[randomImg] +".jpg");
     $("#dialog").show().css('display', 'flex');
 }

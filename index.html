@@ -55,11 +55,16 @@
 	</div>
 </section>
 <div id="dialog">
-	<img src=""/>
+	<img id="showImg" width="200" height="200"/>
 	<p>This level is not activated.</p>
 	<p>Please donate $100, and this level will open in future.</p>
-	<div id="dialog_btn"><a href="" id="check_receive"style="padding-left:30px;">Donate</a><button class="back_button"style="padding-left:35px;">Back</button></div>
-
+	<div id="dialog_btn"><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+						<input type="hidden" name="cmd" value="_s-xclick">
+						<input type="hidden" name="hosted_button_id" value="2HKRVKG4WZEC6">
+						<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+						<img alt="" border="0" src="https://www.paypalobjects.com/zh_TW/i/scr/pixel.gif" width="1" height="1">
+						</form>
+						<button class="back_button"style="padding-left:35px;">Back</button></div>
 </div>
 <div id="street_view"></div>
 </body>
