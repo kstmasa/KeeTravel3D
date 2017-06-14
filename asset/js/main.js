@@ -21,16 +21,28 @@ window.addEventListener("load",function(){
 	$(".back_button").on("click",function(){
 		$("#dialog").hide();
 		$(".back_button").removeClass("zoomIn").addClass( "animated zoomOut");
+
 		setTimeout(function() {
-			
 			$(".back_button").removeClass("zoomOut");
 			$(".choose_level_page").hide();
 			$(".keelung_city_page").show();
+
 			$("#keelung_background").removeClass( "zoomOut" ).addClass( "zoomIn");
 			$("#keelung_citys").removeClass( "zoomOut" ).addClass( "zoomIn");
 			panorama.setPosition({lat: 25.1312136, lng: 121.7415504});
 		}, 1000);
 	});
+	$("#level_back_button").on("click",function(){
+		$("#choose_level_page_box").removeClass("zoomIn").addClass( "animated zoomOut");
+		setTimeout(function() {
+			$("#choose_level_page_box").removeClass("zoomOut");
+			$("#choose_level_page_box").hide();
+			$(".keelung_city_page").show();
+			$("#keelung_background").removeClass( "zoomOut" ).addClass( "zoomIn");
+			$("#keelung_citys").removeClass( "zoomOut" ).addClass( "zoomIn");
+		}, 1000);
+	});
+	
 	$("#city_1").on("click",function(){
 		showDialog(); 
 	});
@@ -42,8 +54,10 @@ window.addEventListener("load",function(){
 	});
 	$("#city_4").on("click",function(){
 		hideKeelung();
+		$("#showCityImg").attr("src","asset/img/"+"004.png");
 		setTimeout(function() {
-			$(".back_button").removeClass("zoomOut").addClass("animated zoomIn");
+			$("#choose_level_page_box").show();
+			$("#choose_level_page_box").removeClass("zoomOut").addClass( "animated zoomIn");
 		}, 1000);
 	});
 	$("#city_5").on("click",function(){

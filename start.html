@@ -3,42 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Start</title>
-    <link rel="stylesheet" href="asset/css/main.css">
-    <script src="asset/js/Hyperlapse.js"></script>
+	<link rel="Shortcut Icon" type="image/x-icon" href="asset/img/favicon.ico" />
 	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="asset/css/main.css">
     <script src="asset/js/Hyperlapse.js"></script>
-    
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false" type="text/javascript"></script> 
-		<script src="asset/js/three.min.js"></script>
+	<script src="asset/js/three.min.js"></script>
 	<script src="asset/js/GSVPano.js"></script>
+	<script src="asset/js/start.js"></script>
+	<link rel="stylesheet" href="asset/css/start.css">
 </head>
 <body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class="navbar-brand" style="color:white;">GTI x DYH</div>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="#">Document</a></li>
+    </ul>
+  </div>
+</nav>
 <div id="street_view"></div>
-<script>
-  // 建立 Hyperlapse 效果
-  var hyperlapse = new Hyperlapse(document.getElementById('street_view'), {
-      lookat: new google.maps.LatLng(37.81409525128964,-122.4775045005249),
-      zoom: 2,
-      use_lookat: true,
-      elevation: 1
-  });
-  // 一但讀取完成便立刻啟動
-  hyperlapse.onRouteComplete = function(e) { hyperlapse.load(); };
-  hyperlapse.onLoadComplete = function(e)  { hyperlapse.play(); };
-  var route = { request: {
-    origin: new google.maps.LatLng(25.1313914,121.7405339,21),  // 出發點
-    destination: new google.maps.LatLng(25.1318469,121.7422984), // 目的地 
-    travelMode: google.maps.DirectionsTravelMode.DRIVING
-  }};
+<div id="pano" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index:-1;"></div>
+<div id="controls">
+	<div id="map" style="width: 400px; height: 300px; float: left; padding: 0;"></div>
+	<div id="controls" style="">
+		<form id="map_form">
+			<input type="text" name="address" id="address" />
+			<button type="submit" id="searchButton" >Search</button>
+		</form>
+	</div>
+	<div id="text" style="width: 500px; height: 120px; float: left; padding-top: 10px; z-index:0; border-style:solid; border-width:medium;"></div>
+</div>
 
-  // 計算路徑
-  (new google.maps.DirectionsService()).route(route.request, function(res, status) {
-    hyperlapse.generate( {route:res} );
-  });
-</script>
+
 </body>
-
 </html>
