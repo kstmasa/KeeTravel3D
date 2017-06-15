@@ -12,6 +12,7 @@
     <script src="asset/js/Hyperlapse.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyCQpYZYBb1p1DvW66VbygQ7YJhAmViCX_U" type="text/javascript"></script> 
 	<script src="asset/js/three.min.js"></script>
+	<script src="asset/js/dat.gui.min.js"></script>
 	<script src="asset/js/GSVPano.js"></script>
 	<script src="asset/js/start.js"></script>
 	<link rel="stylesheet" href="asset/css/start.css">
@@ -30,14 +31,8 @@
 <div id="street_view"></div>
 <div id="pano" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index:-1;"></div>
 <div id="controls">
-	<div id="map" style="width: 400px; height: 300px; float: left; padding: 0;"></div>
-	<div id="controls" style="">
-		<form id="map_form">
-			<input type="text" name="address" id="address" />
-			<button type="submit" id="searchButton" >Search</button>
-		</form>
-	</div>
-	<div id="text" style="width: 500px; height: 120px; float: left; padding-top: 10px; z-index:0; border-style:solid; border-width:medium;"></div>
+	<div id="map" style="width: 300px; height: 200px; float: left; padding: 0;position: absolute;top: 10%;left: 0%;z-index: 5; border:5px; border-radius: 5px; border-color:orange; border-style:solid;"></div>
+	<button style="	border: none;background: none;"><div id="teleport">傳送至目的地</div></button>
 </div>
 
 
