@@ -3,12 +3,17 @@ html, body {
     margin: 0;
     padding: 0;
 }
-
+#currentTime{
+	color: white;
+}
 #street_view {
     height: 100%;
 }
 .navbar {
-    position: relative;
+	position: absolute;
+    top: 0;
+    width: 100%;
+	z-index:50;
     min-height: 50px;
     margin-bottom: 0px;
     border: 1px solid transparent;
@@ -35,4 +40,69 @@ html, body {
 #teleport:hover {
 	transform: scale(1.3, 1.3);
 	border-color:red;
+}
+#take_bus {
+	width: 300px;
+	float: left;
+	padding: 0;
+	position: absolute;
+	top: 60%;
+	left: 0%;
+	z-index: 5;
+	border:5px;
+	border-radius: 5px;
+	border-color:orange;
+	border-style:solid;
+	text-align:center;
+	background-color:#ffcf77;
+	margin: auto;
+	font-weight: 500;
+    font-size: 20px;
+	font-family: "Microsoft JhengHei";
+}
+#take_bus:hover {
+	transform: scale(1.3, 1.3);
+	border-color:red;
+}
+.question_dialog {
+	background: rgb(200, 243, 233);
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.09);
+	color: #4a4a4a;
+	border-radius:10px;
+	display: -ms-flexbox;
+	display: flex;
+	display: none;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-ms-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-ms-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	padding: 36px 36px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	box-sizing: border-box;
+	text-align: center;
+	z-index:10;
+}
+.question_dialog>h1 {
+  font-size: 30px;
+}
+.question_dialog button,
+.question_dialog a {
+	display: -ms-flexbox;
+	display: flex;
+	padding: 7px 32px;
+	background: #3a7b86;
+	border-radius: 6px;
+	color: #fff;
+	cursor: pointer;
+	float: left;
+	width: 100px;
+	margin-left: 20px;
+	border:none;
 }

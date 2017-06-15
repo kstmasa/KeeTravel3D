@@ -7,6 +7,9 @@ a:focus, a:hover {
     color: none;
     text-decoration: none;
 }
+#currentTime{
+	color: white;
+}
 .keelung_city_page{
 	display:none;
 }
@@ -158,7 +161,10 @@ a:focus, a:hover {
     background-image: -o-linear-gradient(top, #3EACBA, #48C6D4);
 }
 .navbar {
-    position: relative;
+	position: absolute;
+    top: 0;
+    width: 100%;
+	z-index:50;
     min-height: 50px;
     margin-bottom: 0px;
     border: 1px solid transparent;

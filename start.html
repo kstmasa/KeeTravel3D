@@ -24,17 +24,37 @@
       <div class="navbar-brand" style="color:white;">GTI x DYH</div>
     </div>
     <ul class="nav navbar-nav">
+	  <li><a href="index.html">Home</a></li>
       <li><a href="#">Document</a></li>
+    </ul>
+	<ul class="nav navbar-nav navbar-right">
+      <li><a href="#" style="color: white;">YourScore:<span id="score"></span></a></li>
+      <li><a href="#" style="color: white;">Time:<span id="currentTime"></span></a></li>
     </ul>
   </div>
 </nav>
-<div id="street_view"></div>
-<div id="pano" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index:-1;"></div>
-<div id="controls">
-	<div id="map" style="width: 300px; height: 200px; float: left; padding: 0;position: absolute;top: 10%;left: 0%;z-index: 5; border:5px; border-radius: 5px; border-color:orange; border-style:solid;"></div>
-	<button style="	border: none;background: none;"><div id="teleport">傳送至目的地</div></button>
+<div id="street_view"><button style="	border: none;background: none;"><div id="teleport">傳送至目的地</div></button>
+<button style="	border: none;background: none;"><div id="take_bus"><img id="loading_img" src="asset/img/loading.gif" style="width:20px; height:20px;"/>等待公車</div></button>
 </div>
+<div id="pano" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index:-1;"></div>
 
+<div id="map" style="width: 300px; height: 200px; float: left; padding: 0;position: absolute;top: 10%;left: 0%;z-index: 5; border:5px; border-radius: 5px; border-color:orange; border-style:solid;"></div>
 
+<div id="question_dialog">
+	<div id="correct"class="question_dialog" style="z-index:20;">恭喜你答對了</div>
+	<div id="worng"class="question_dialog" style="z-index:20;">再思考一下喔</div>
+</div>
+<div id="fb-root"></div>
 </body>
+<script>
+window.fbAsyncInit = function() {
+	FB.init({appId: '795077487333149', status: true, cookie: true, oauth: true, xfbml: true});
+};
+(function(d){
+	var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+	js = d.createElement('script'); js.id = id; js.async = true;
+	js.src = "//connect.facebook.net/zh_TW/all.js";
+	d.getElementsByTagName('head')[0].appendChild(js);
+}(document));
+</script>
 </html>

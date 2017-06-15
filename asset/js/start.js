@@ -2,25 +2,15 @@
  * Created by GTI on 2017/5/20.
  */
 var panorama;
-var current = 0;
-function initialize(){
-	
-    panorama = new google.maps.StreetViewPanorama(
-        document.getElementById('street_view'),
-        { 
-            position: {lat:  25.132471, lng: 121.740081},
-            pov: {heading: 1, pitch: 0},
-            zoom: 1,
-            zoomControl:false,
-            panControl:false,
-            addressControl:false,
-            motionTrackingControl:false,
-            linksControl:false,
-            fullscreenControl:false
-    });
-}
 window.addEventListener("load",function(){
 	initialize();
+	$("#score").text(localStorage.score);
+	window.setInterval(function() {
+		var NowDate = new Date();
+		var d = NowDate.getDay();
+		var dayNames = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
+		document.getElementById('currentTime').innerHTML = '目前時間：' + NowDate.toLocaleString() + '（' + dayNames[d] + '）';
+	}, 1000);
 	var start_point = new google.maps.LatLng(25.1324, 121.73980000000006);
 	var end_point = new google.maps.LatLng(25.15761094284425, 121.76387091424454);
 	var _route_markers = [];
@@ -36,6 +26,9 @@ window.addEventListener("load",function(){
 		center: start_point,
 		zoom: 15
 	};
+	
+	var point_1 = {lat: 25.160248, lng: 121.763789};
+	
 	map = new google.maps.Map(document.getElementById("map"), mapOpt);
 	geocoder = new google.maps.Geocoder();
 	
@@ -43,7 +36,14 @@ window.addEventListener("load",function(){
 	directions_renderer = new google.maps.DirectionsRenderer({draggable:false, markerOptions:{visible: false}});
 	directions_renderer.setMap(map);
 	directions_renderer.setOptions({preserveViewport:true});
-
+	//create 和平島tp點位
+	createTP(point_1, map);
+	//create question
+	initialQuestion();
+	camera_pin = new google.maps.Marker({
+		position: start_point,
+		map: map
+	});
 	// create $(#map) position
 	pivot_pin = new google.maps.Marker({
 		position: start_point,
@@ -52,28 +52,29 @@ window.addEventListener("load",function(){
 	});
 	// if you move, it will change map position in $(#map)
 	panorama.addListener('position_changed', function() {
-		pivot_pin.setPosition(panorama.getPosition());
+		
+		camera_pin.setPosition(panorama.getPosition());
 		map.setCenter(panorama.getPosition());
 	});
 	
 	/* Hyperlapse */
 
-	var pano = document.getElementById('pano');
+	var pano = document.getElementById('street_view');
 	var is_moving = false;
 	var px, py;
 	var onPointerDownPointerX=0, onPointerDownPointerY=0;
 
 	var hyperlapse = new Hyperlapse(pano, {
+		lookat: start_point,
 		fov: 80,
-		millis: 50,
+		millis: 100,
 		width: window.innerWidth,
 		height: window.innerHeight,
-		zoom: 1,
-		use_lookat: true,
+		zoom: 2,
+		use_lookat: false,
 		distance_between_points: 5,
 		max_points: 100,
 	});
-	
 	
 
 	hyperlapse.onError = function(e) {
@@ -98,33 +99,29 @@ window.addEventListener("load",function(){
 
 	hyperlapse.onLoadProgress = function(e) {
 		console.log( "Loading: "+ (e.position+1) +" of "+ hyperlapse.length() );
+	
 	};
 
 	hyperlapse.onLoadComplete = function(e) {
 		//完成
+		$("#loading_img").hide();
+		$("#take_bus").text("公車已進站");
 	};
 
 	hyperlapse.onFrame = function(e) {
 		
-		// 開始動作
-		console.log( "" +
-			"Start: " + start_pin.getPosition().toString() + 
-			"<br>End: " + end_pin.getPosition().toString() + 
-			"<br>Lookat: " + pivot_pin.getPosition().toString() + 
-			"<br>Position: "+ (e.position+1) +" of "+ hyperlapse.length() );
 		camera_pin.setPosition(e.point.location);
 		
 		if(end_point.equals(e.point.location)){
 			hyperlapse.pause();
+			panorama.setPosition(end_point);
+			$("#teleport").text("回傳至出發地");
+			$(".gm-style").show();
 		}
 
 		
 	};
 	
-	/* Dat GUI */
-
-	var gui = new dat.GUI();
-
 	var o = {
 		distance_between_points:10, 
 		max_points:100, 
@@ -161,7 +158,6 @@ window.addEventListener("load",function(){
 					hyperlapse.generate({route: response});
 				} else {
 					console.log(status);
-					
 				}
 			})
 		},
@@ -170,8 +166,8 @@ window.addEventListener("load",function(){
 	o.generate();
 	
 	$("#teleport").on("click",function(){
-		console.log(panorama.getPosition());
-		if(end_point.equals(panorama.getPosition())){
+		if($(this).text()=="回傳至出發地"){
+			camera_pin.setPosition(start_point);
 			panorama.setPosition(start_point);
 			$(this).text("傳送至目的地");
 		}else{
@@ -179,4 +175,97 @@ window.addEventListener("load",function(){
 			$(this).text("回傳至出發地");
 		}
 	});
+	$("#take_bus").on("click",function(){
+		$(".gm-style").hide();
+		hyperlapse.play();
+	});
 });
+function initialize(){
+	
+    panorama = new google.maps.StreetViewPanorama(
+        document.getElementById('street_view'),
+        { 
+            position: {lat:  25.132471, lng: 121.740081},
+            pov: {heading: 1, pitch: 0},
+            zoom: 1,
+            zoomControl:false,
+            panControl:false,
+            addressControl:false,
+            motionTrackingControl:false,
+            linksControl:false,
+            fullscreenControl:false
+    });
+}
+function createTP(arr, m){
+	var marker = new google.maps.Marker({
+		// The below line is equivalent to writing:
+		// position: new google.maps.LatLng(-34.397, 150.644)
+		position: arr,
+		map: panorama,
+		icon: "asset/img/tp.png"
+	});
+	marker.addListener('click', function() {
+		var tp_point = new google.maps.LatLng(25.16036230144654,121.7637650268457);
+		if(tp_point.equals(panorama.getPosition())){
+			tp_point = new google.maps.LatLng(25.158970000000004,121.76354);
+		}
+		panorama.setPosition(tp_point);
+	});
+}
+function initialQuestion(){
+	var question = [
+		['Q1',25.16064531460982, 121.7637755334104,'請問這隻魚是?','旗魚','白魚','黑魚'],
+		['Q2',25.160225, 121.761374,'請問旁邊海洋的名稱是?','東海','西海','北海'],
+		['Q3',25.158970000000004,121.76354,'請問小丸子們要去做什麼運動?','游泳','跑步','飆車'],
+		['Q4',25.160856,121.7636883,'下列何項沒有在海角樂園出現?','環球影城','生態池','沙灘區'],
+		['Q5',25.132062,121.739964,'請問這尊是?','蔣公','勞工','三公']
+	];
+	var marker=[];
+	for (var i = 0; i < question.length; i++) {
+		var ques = question[i];
+		console.log(i+'<br>'+ques[i]);
+		marker[i] = new google.maps.Marker({
+			position: {lat: ques[1], lng: ques[2]},
+			map: panorama,
+			icon: "asset/img/ques_logo.png",
+			title: ques[0],
+		});
+		
+		$("#question_dialog").append("<div id='question_"+i+"' class='question_dialog'></div>");
+		$("#question_"+i).append("<img id='question_img"+i+"' width='200' height='200' src='asset/img/"+ques[0]+".jpg'/>");
+		$("#question_"+i).append("<div id='question_content"+i+"'><h1>"+ques[3]+"</h1></div>");
+		$("#question_"+i).append("<div id='question_answer"+i+"'><button onclick='checkAns(1,question_"+i+")'>"+ques[4]+"</button><button onclick='checkAns(0,question_"+i+")'>"+ques[5]+"</button><button onclick='checkAns(0,question_"+i+")'>"+ques[6]+"</button></div>");
+		var addListener = function (i) {
+			google.maps.event.addListener(marker[i], 'click', function(){
+				console.log("#question_"+i);
+				if(ques[0])
+				$("#question_"+i).show();                 
+			});
+		}
+		addListener(i);
+	}
+}
+
+function checkAns(val,div){
+	if(val){
+		if (localStorage.score) {
+            localStorage.score = Number(localStorage.score)+1;
+        } else {
+            localStorage.score = 1;
+        }
+		$("#score").text(localStorage.score);
+		$("#correct").show();
+	
+		window.setTimeout(function() {
+			$("#correct").hide();
+			$("#"+div.id+"").hide();
+		},1000);
+	}else{
+
+		$("#worng").show();
+
+		window.setTimeout(function() {
+			$("#worng").hide();
+		},500);
+	}
+}
