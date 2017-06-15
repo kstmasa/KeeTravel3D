@@ -26,6 +26,7 @@
     <ul class="nav navbar-nav">
 	  <li><a href="index.html">Home</a></li>
       <li><a href="#">Document</a></li>
+	  
     </ul>
 	<ul class="nav navbar-nav navbar-right">
       <li><a href="#" style="color: white;">YourScore:<span id="score"></span></a></li>
@@ -44,17 +45,5 @@
 	<div id="correct"class="question_dialog" style="z-index:20;">恭喜你答對了</div>
 	<div id="worng"class="question_dialog" style="z-index:20;">再思考一下喔</div>
 </div>
-<div id="fb-root"></div>
 </body>
-<script>
-window.fbAsyncInit = function() {
-	FB.init({appId: '795077487333149', status: true, cookie: true, oauth: true, xfbml: true});
-};
-(function(d){
-	var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
-	js = d.createElement('script'); js.id = id; js.async = true;
-	js.src = "//connect.facebook.net/zh_TW/all.js";
-	d.getElementsByTagName('head')[0].appendChild(js);
-}(document));
-</script>
 </html>
