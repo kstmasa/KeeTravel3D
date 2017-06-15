@@ -3,9 +3,13 @@
  */
 var panorama;
 var current = 0;
-
 window.addEventListener("load",function(){
 	initialize();
+	window.setInterval(function() {
+		var pov = panorama.getPov();
+		pov.heading += 0.2;
+		panorama.setPov(pov);
+	}, 30);
 	$("#play_button").on("click",function(){
 		$("#play_title").removeClass( "bounceInRight" ).addClass( "zoomOut");
 		$("#play_button").addClass( "animated zoomOut");
@@ -70,11 +74,7 @@ window.addEventListener("load",function(){
 		showDialog(); 
 	});
 });
-window.setInterval(function() {
-    var pov = panorama.getPov();
-    pov.heading += 0.2;
-    panorama.setPov(pov);
-}, 30);
+
 function hideKeelung(){
 	$("#keelung_background").addClass( "animated zoomOut");
 	$("#keelung_citys").addClass( "animated zoomOut");
