@@ -5,6 +5,7 @@ var panorama;
 window.addEventListener("load",function(){
 	initialize();
 	$("#score").text(localStorage.score);
+	
 	window.setInterval(function() {
 		var NowDate = new Date();
 		var d = NowDate.getDay();
@@ -57,6 +58,7 @@ window.addEventListener("load",function(){
 		map.setCenter(panorama.getPosition());
 	});
 	
+	
 	/* Hyperlapse */
 
 	var pano = document.getElementById('street_view');
@@ -106,14 +108,19 @@ window.addEventListener("load",function(){
 		//完成
 		$("#loading_img").hide();
 		$("#take_bus").text("公車已進站");
+		$("#take_bus").on("click",function(){
+		$(".gm-style:first").hide();
+			hyperlapse.play();
+		});
 	};
 
 	hyperlapse.onFrame = function(e) {
 		
 		camera_pin.setPosition(e.point.location);
-		
+		map.setCenter(camera_pin.getPosition());
 		if(end_point.equals(e.point.location)){
 			hyperlapse.pause();
+			$("#take_bus").text("已到達目的地");
 			panorama.setPosition(end_point);
 			$("#teleport").text("回傳至出發地");
 			$(".gm-style").show();
@@ -171,14 +178,12 @@ window.addEventListener("load",function(){
 			panorama.setPosition(start_point);
 			$(this).text("傳送至目的地");
 		}else{
+			$("#take_bus").text("已到達目的地");
 			panorama.setPosition(end_point);
 			$(this).text("回傳至出發地");
 		}
 	});
-	$("#take_bus").on("click",function(){
-		$(".gm-style").hide();
-		hyperlapse.play();
-	});
+	
 });
 function initialize(){
 	
