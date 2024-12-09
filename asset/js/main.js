@@ -4,6 +4,7 @@
 var panorama;
 var current = 0;
 window.addEventListener("load",function(){
+	
 	initialize();
 	window.setInterval(function() {
 		var NowDate = new Date();

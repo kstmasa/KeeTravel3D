@@ -1,107 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Welcome to Keelung Travel 3D</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+	<title>Keelung Travel 3D</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 
-    <html prefix='og: http://ogp.me/ns#'>
-    <meta property="og:url"           content="https://kstmasa.github.io/KeeTravel3D/" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="Welcome to Keelung Travel 3D" />
-    <meta property="og:description"   content="GTIxDYH" />
-    <meta property="og:image"         content="https://kstmasa.github.io/KeeTravel3D/asset/img/Home.png" />
-	
-    <link rel="Shortcut Icon" type="image/x-icon" href="asset/img/favicon.ico" />
-    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEZGTZJO5mE0hehl8MlDxMPx7Q5Su57rs&callback=initialize&sensor=false&libraries=geometry">
-    </script>
+	<html prefix='og: http://ogp.me/ns#'>
+	<meta property="og:url" content="https://kstmasa.github.io/KeeTravel3D/" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Welcome to Keelung Travel 3D" />
+	<meta property="og:description" content="Keelung Travel 3D" />
+	<meta property="og:image" content="https://kstmasa.github.io/KeeTravel3D/asset/img/Home.png" />
+	<link rel="Shortcut Icon" type="image/x-icon" href="asset/img/favicon.ico" />
+	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<script src="asset/js/initialAPI.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="asset/css/main.css">
-    <script src="asset/js/main.js"></script>
+	<script async defer src="asset/js/main.js"></script>
 </head>
-<body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-	  <div class="nav-switch"></div>
-      <div class="navbar-brand" style="color:white;">GTI x DYH</div>
-    </div>
-    <ul class="nav navbar-nav nav-desktop">
-      <li><a href="asset/00257108,00357213,00357301.ppt">Document</a></li>
-	  <li><div class="fb-share-button" data-href="https://kstmasa.github.io/KeeTravel3D/" data-layout="button" data-size="large" data-mobile-iframe="false" style="margin-top: 10px;"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkstmasa.github.io%2FKeeTravel3D%2F&amp;src=sdkpreparse">分享</a></div></li>
-    </ul>
-	<ul class="nav navbar-nav navbar-right nav-desktop">
-      <li><a href="#" style="color: white;">Time:<span id="currentTime"></span></a></li>
-    </ul>
-  </div>
-</nav>
-<section class="initial_page">
-	<div id="play_title" class="animated bounceInRight"></div>
-	<div id="play_box" class="img_rounded">
-		<a id="play_button" class="push_button blue" >Play</a>
-		<a id="exit_button" class="push_button red" onclick="window.close();">Exit</a>
-	</div>
-</section>
-<section class="keelung_city_page">
-	<div id="keelung_background">
-		<center><img src="asset/img/Keelung_districts.png" height="500"/></center>
-	</div>
-	<div id="keelung_citys">
-		<div id="city_1"><button id="city_1_btn" class="city_btn">七堵區</button></div>
-		<div id="city_2"><button id="city_2_btn" class="city_btn">仁愛區</button></div>
-		<div id="city_3"><button id="city_3_btn" class="city_btn">暖暖區</button></div>
-		<div id="city_4"><button id="city_4_btn" class="city_btn">中正區</button></div>
-		<div id="city_5"><button id="city_5_btn" class="city_btn">中山區</button></div>
-		<div id="city_6"><button id="city_6_btn" class="city_btn">安樂區</button></div>
-		<div id="city_7"><button id="city_7_btn" class="city_btn">信義區</button></div>
-	</div>
-</section>
-<section class="choose_level_page">
-	<div id="choose_level_page_box">
-		<div id="back_box">
-			<img id="showCityImg"/>
-			<button id="level_back_button"class="push_button red" style="margin-top: 0;margin-bottom: 0;">Back</button>
-		</div>
-		<div id="city_4_level">
-			<div id="city_4_001"><a href="start.html#25.132471,121.740081,25.158970000000004,121.76354"><img src="asset/img/city_4_001.jpg"width="100"/><p class="level_p">和平島公園</p></a></div>
-			<div id="city_4_002"><a href="start.html#25.132471,121.740081,25.14194,121.80205000000001"><img src="asset/img/city_4_002.jpg"width="200"/><p class="level_p">潮境公園</p></a></div>
-		</div>
-	</div>
-</section>
-<div id="dialog">
-	<img id="showImg" width="200" height="200"/>
-	<p>This level is not activated.</p>
-	<p>Please donate $100, and this level will open in future.</p>
-	<div id="dialog_btn"><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-						<input type="hidden" name="cmd" value="_s-xclick">
-						<input type="hidden" name="hosted_button_id" value="2HKRVKG4WZEC6">
-						<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-						<img alt="" border="0" src="https://www.paypalobjects.com/zh_TW/i/scr/pixel.gif" width="1" height="1">
-						</form>
-	<button class="back_button"style="padding-left:35px;">Back</button></div>
-</div>
-<div id="street_view"></div>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.9&appId=795077487333149";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141730516-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-141730516-2');
-</script>
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<div class="nav-switch"></div>
+				<div class="navbar-brand" style="color:white;">Keelung Travel 3D</div>
+			</div>
+			<ul class="nav navbar-nav nav-desktop">
+				<!-- <li><a href="asset/00257108,00357213,00357301.ppt">Document</a></li> -->
+				<li>
+					<div class="fb-share-button" data-href="https://kstmasa.github.io/KeeTravel3D/" data-layout="button"
+						data-size="large" data-mobile-iframe="false" style="margin-top: 10px;"><a
+							class="fb-xfbml-parse-ignore" target="_blank"
+							href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkstmasa.github.io%2FKeeTravel3D%2F&amp;src=sdkpreparse">分享</a>
+					</div>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right nav-desktop">
+				<li><a href="#" style="color: white;">Time:<span id="currentTime"></span></a></li>
+			</ul>
+		</div>
+	</nav>
+	<section class="initial_page">
+		<div id="play_title" class="animated bounceInRight"></div>
+		<div id="play_box" class="img_rounded">
+			<a id="play_button" class="push_button blue">Play</a>
+			<a id="exit_button" class="push_button red" onclick="window.close();">Exit</a>
+		</div>
+	</section>
+	<section class="keelung_city_page">
+		<div id="keelung_background">
+			<center><img src="asset/img/Keelung_districts.png" height="500" /></center>
+		</div>
+		<div id="keelung_citys">
+			<div id="city_1"><button id="city_1_btn" class="city_btn">七堵區</button></div>
+			<div id="city_2"><button id="city_2_btn" class="city_btn">仁愛區</button></div>
+			<div id="city_3"><button id="city_3_btn" class="city_btn">暖暖區</button></div>
+			<div id="city_4"><button id="city_4_btn" class="city_btn">中正區</button></div>
+			<div id="city_5"><button id="city_5_btn" class="city_btn">中山區</button></div>
+			<div id="city_6"><button id="city_6_btn" class="city_btn">安樂區</button></div>
+			<div id="city_7"><button id="city_7_btn" class="city_btn">信義區</button></div>
+		</div>
+	</section>
+	<section class="choose_level_page">
+		<div id="choose_level_page_box">
+			<div id="back_box">
+				<img id="showCityImg" />
+				<button id="level_back_button" class="push_button red"
+					style="margin-top: 0;margin-bottom: 0;">Back</button>
+			</div>
+			<div id="city_4_level">
+				<div id="city_4_001"><a href="start.html#25.132471,121.740081,25.158970000000004,121.76354"><img
+							src="asset/img/city_4_001.jpg" width="100" />
+						<p class="level_p">和平島公園</p>
+					</a></div>
+				<div id="city_4_002"><a href="start.html#25.132471,121.740081,25.14194,121.80205000000001"><img
+							src="asset/img/city_4_002.jpg" width="200" />
+						<p class="level_p">潮境公園</p>
+					</a></div>
+			</div>
+		</div>
+	</section>
+	<div id="dialog">
+		<img id="showImg" width="200" height="200" />
+		<p>This level is not activated.</p>
+		<p>Please donate $100, and this level will open in future.</p>
+		<div id="dialog_btn">
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="2HKRVKG4WZEC6">
+				<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0"
+					name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<img alt="" border="0" src="https://www.paypalobjects.com/zh_TW/i/scr/pixel.gif" width="1" height="1">
+			</form>
+			<button class="back_button" style="padding-left:35px;">Back</button>
+		</div>
+	</div>
+	<div id="street_view"></div>
+	<div id="fb-root"></div>
+	<script>(function (d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.9&appId=795077487333149";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
 </body>
 </html>

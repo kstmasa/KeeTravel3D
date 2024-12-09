@@ -1,60 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-    <title>Start</title>
-	<link rel="Shortcut Icon" type="image/x-icon" href="asset/img/favicon.ico" />
-	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <script src="asset/js/Hyperlapse.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyDEZGTZJO5mE0hehl8MlDxMPx7Q5Su57rs" type="text/javascript"></script>
-	<script src="asset/js/three.min.js"></script>
-	<script src="asset/js/dat.gui.min.js"></script>
-	<script src="asset/js/GSVPano.js"></script>
-	<script src="asset/js/start.js"></script>
-	<link rel="stylesheet" href="asset/css/start.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <title>Keelung Travel 3D</title>
+  <link rel="Shortcut Icon" type="image/x-icon" href="asset/img/favicon.ico" />
+  <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="asset/js/initialAPI.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <script src="asset/js/Hyperlapse.js"></script>
+  <script async defer src="asset/js/three.min.js"></script>
+  <script sasync defer rc="asset/js/dat.gui.min.js"></script>
+  <script async defer src="asset/js/GSVPano.js"></script>
+  <script async defer src="asset/js/start.js"></script>
+  <link rel="stylesheet" href="asset/css/start.css">
 </head>
+
 <body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-	  <div class="nav-switch"></div>
-      <div class="navbar-brand" style="color:white;">GTI x DYH</div>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <div class="nav-switch"></div>
+        <div class="navbar-brand" style="color:white;">Keelung Travel 3D</div>
+      </div>
+      <ul class="nav navbar-nav nav-desktop">
+        <li><a href="index.html">Home</a></li>
+        <!-- <li><a href="asset/00257108,00357213,00357301.ppt">Document</a></li> -->
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right nav-desktop">
+        <li><a href="#" style="color: white;">YourScore:<span id="score"></span></a></li>
+        <li><a href="#" style="color: white;">Time:<span id="currentTime"></span></a></li>
+      </ul>
     </div>
-    <ul class="nav navbar-nav nav-desktop">
-	  <li><a href="index.html">Home</a></li>
-      <li><a href="asset/00257108,00357213,00357301.ppt">Document</a></li>
-	  
-    </ul>
-	<ul class="nav navbar-nav navbar-right nav-desktop">
-      <li><a href="#" style="color: white;">YourScore:<span id="score"></span></a></li>
-      <li><a href="#" style="color: white;">Time:<span id="currentTime"></span></a></li>
-    </ul>
+  </nav>
+  <div id="street_view"><button style="	border: none;background: none;">
+      <div id="teleport">傳送至目的地</div>
+    </button>
+    <button style="	border: none;background: none;">
+      <div id="take_bus"><img id="loading_img" src="asset/img/loading.gif" style="width:20px; height:20px;" />等待公車</div>
+    </button>
   </div>
-</nav>
-<div id="street_view"><button style="	border: none;background: none;"><div id="teleport">傳送至目的地</div></button>
-<button style="	border: none;background: none;"><div id="take_bus"><img id="loading_img" src="asset/img/loading.gif" style="width:20px; height:20px;"/>等待公車</div></button>
-</div>
-<div id="pano" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index:-1;"></div>
+  <div id="pano" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index:-1;"></div>
 
-<div id="map" style="width: 300px; height: 200px; float: left; padding: 0;position: absolute;top: 10%;left: 0%;z-index: 5; border:5px; border-radius: 5px; border-color:orange; border-style:solid;"></div>
+  <div id="map"
+    style="width: 300px; height: 200px; float: left; padding: 0;position: absolute;top: 10%;left: 0%;z-index: 5; border:5px; border-radius: 5px; border-color:orange; border-style:solid;">
+  </div>
 
-<div id="question_dialog">
-	<div id="correct"class="question_dialog" style="z-index:20;">恭喜你答對了</div>
-	<div id="worng"class="question_dialog" style="z-index:20;">再思考一下喔</div>
-</div>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141730516-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-141730516-2');
-</script>
+  <div id="question_dialog">
+    <div id="correct" class="question_dialog" style="z-index:20;">恭喜你答對了</div>
+    <div id="worng" class="question_dialog" style="z-index:20;">再思考一下喔</div>
+  </div>
 </body>
 </html>

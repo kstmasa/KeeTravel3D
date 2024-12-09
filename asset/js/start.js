@@ -80,7 +80,6 @@ window.addEventListener("load",function(){
 	
 
 	hyperlapse.onError = function(e) {
-		console.log( "ERROR: "+ e.message );
 	};
 
 	hyperlapse.onRouteProgress = function(e) {
@@ -95,12 +94,10 @@ window.addEventListener("load",function(){
 
 	hyperlapse.onRouteComplete = function(e) {
 		directions_renderer.setDirections(e.response);
-		console.log( "Number of Points: "+ hyperlapse.length() );
 		hyperlapse.load();
 	};
 
 	hyperlapse.onLoadProgress = function(e) {
-		console.log( "Loading: "+ (e.position+1) +" of "+ hyperlapse.length() );
 	
 	};
 
@@ -144,7 +141,6 @@ window.addEventListener("load",function(){
 		screen_width: window.innerWidth,
 		screen_height: window.innerHeight,
 		generate:function(){
-			console.log( "Generating route..." );
 
 			directions_renderer.setDirections({routes: []});
 
@@ -164,7 +160,6 @@ window.addEventListener("load",function(){
 				if (status == google.maps.DirectionsStatus.OK) {   
 					hyperlapse.generate({route: response});
 				} else {
-					console.log(status);
 				}
 			})
 		},
@@ -231,7 +226,6 @@ function initialQuestion(){
 	var marker=[];
 	for (var i = 0; i < question.length; i++) {
 		var ques = question[i];
-		console.log(i+'<br>'+ques[i]);
 		marker[i] = new google.maps.Marker({
 			position: {lat: ques[1], lng: ques[2]},
 			map: panorama,
@@ -245,7 +239,6 @@ function initialQuestion(){
 		$("#question_"+i).append("<div id='question_answer"+i+"'><button onclick='checkAns(1,question_"+i+")'>"+ques[4]+"</button><button onclick='checkAns(0,question_"+i+")'>"+ques[5]+"</button><button onclick='checkAns(0,question_"+i+")'>"+ques[6]+"</button></div>");
 		var addListener = function (i) {
 			google.maps.event.addListener(marker[i], 'click', function(){
-				console.log("#question_"+i);
 				if(ques[0])
 				$("#question_"+i).show();                 
 			});

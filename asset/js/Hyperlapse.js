@@ -185,7 +185,6 @@ var Hyperlapse = function(container, params) {
       return !! window.WebGLRenderingContext
               && !! document.createElement( 'canvas' ).getContext( 'experimental-webgl' );
     } catch(e) {
-      console.log('WebGL not available starting with CanvasRenderer');
       return false;
     }
   };
@@ -356,7 +355,6 @@ var Hyperlapse = function(container, params) {
 				callback(results);
 			} else {
 				if(status == google.maps.ElevationStatus.OVER_QUERY_LIMIT) {
-					console.log("Over elevation query limit.");
 				}
 				_use_elevation = false;
 				callback(null);
@@ -714,7 +712,6 @@ var Hyperlapse = function(container, params) {
 			if(p.route) {
 				handleDirectionsRoute(p.route);
 			} else {
-				console.log("No route provided.");
 			}
 
 		}
